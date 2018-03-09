@@ -15,7 +15,7 @@ public class Unit_Test {
     public void testStartingCash()
     {
         Player player =  new Player(); //Extra parameters to be added when                                           
-        assertEquals(player.getCash(), 1500); //class  has been fully created
+        assertEquals(player.getPlayerCash(), 1500); //class  has been fully created
     }
     
     
@@ -24,10 +24,10 @@ public class Unit_Test {
     public void testChangePlayerCash()
     {
         Player player = new Player();
-        player.changeCash(-200);
-        assertEquals(player.getCash(), 1300);
-        player.changeCash(400);
-        assertEquals(player.getCash(), 1700);
+        player.changePlayerCash(-200);
+        assertEquals(player.getPlayerCash(), 1300);
+        player.changePlayerCash(400);
+        assertEquals(player.getPlayerCash(), 1700);
     }
     
     //Banker starting cash 50000 (to be changed)
@@ -35,17 +35,17 @@ public class Unit_Test {
     public void testBankerCash()
     {
         Banker banker = new Banker();
-        assertEquals(banker.getCash(), 50000);
+        assertEquals(banker.getBankerCash(), 50000);
     }
     
     @Test
     public void testChangeBankerCash()
     {
         Banker banker = new Banker();
-        banker.changeCash(-2000);
-        assertEquals(banker.getCash(), 48000);
-        banker.changeCash(6000);
-        assertEquals(banker.getCash, 54000);
+        banker.changeBankerCash(-2000);
+        assertEquals(banker.getBankerCash(), 48000);
+        banker.changeBankerCash(6000);
+        assertEquals(banker.getBankerCash(), 54000);
     }
     
     @Test
