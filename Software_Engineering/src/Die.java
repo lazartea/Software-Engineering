@@ -3,15 +3,34 @@ import java.util.Random;
 
 public class Die {
     
-    public int getRoll()
+    private boolean isDouble;
+    private int firstRoll;
+    private int secondRoll;
+    
+    public Die()
     {
-        //Creating a random number between 2 and 12. The dice rolls can be
-        //Individually generated later by the GUI. IE, getRoll() returns 7,
-        //At the GUI stage 2 dice can be generated to display either 1 + 6, 2 + 5
-        //or 3 + 4.     
-        Random dice = new Random();
-        return 2 + dice.nextInt(11);
-                              
+        this.isDouble = false;
     }
+    //Create 2 random numbers to simulate 2 dice rolls and check whether they
+    //are Doubles.
+    public int getRoll()
+    {     
+        Random firstDie = new Random();
+        Random secondDie = new Random();
+        firstRoll =  firstDie.nextInt(6) + 1;
+        secondRoll =  secondDie.nextInt(6) + 1;
+        if(firstRoll == secondRoll)
+        {
+            this.isDouble = false;
+        }   
+        return firstRoll + secondRoll;
+    }
+    
+    public boolean isDouble()
+    {
+        return isDouble;
+    }
+            
+        
     
 }
