@@ -14,21 +14,38 @@ public class Unit_Test {
     @Test
     public void testStartingCash()
     {
-        Player player =  new Player(1500); //Extra parameters to be added when 
-                                           //class  has been fully created
-        AssertEquals(player.getCash(), 1500); 
+        Player player =  new Player(); //Extra parameters to be added when                                           
+        AssertEquals(player.getCash(), 1500); //class  has been fully created
     }
     
     
-    //Testing changing the players cash amounts (can be refactored to 1 method)
+    //Testing changing the players cash amounts
     @Test
-    public void testChangingCash()
+    public void testChangePlayerCash()
     {
-        Player player = new Player(1500);
-        player.subtractCash(200);
+        Player player = new Player();
+        player.changeCash(-200);
         AssertEquals(player.getCash, 1300);
-        player.addCash(400);
+        player.changeCash(400);
         AssertEquals(player.getCash, 1700);
+    }
+    
+    //Banker starting cash 50000 (to be changed)
+    @Test
+    public void testBankerCash()
+    {
+        Banker banker = new Banker();
+        AssertEquals(banker.getCash(), 50000);
+    }
+    
+    @Test
+    public void testChangeBankerCash()
+    {
+        Banker banker = new Banker();
+        banker.changeCash(-2000);
+        AssertEquals(banker.getCash(), 48000);
+        banker.changeCash(6000);
+        AssertEquals(banker.getCash, 54000);
     }
     
 }
