@@ -20,21 +20,24 @@ public class Property {
     public void addHouse()
     {
         //Check to ensure no more than 4 houses have been bought
-        if(hasHouse > 4)
+        if(hasHouse < 4)
         {
-            return;
+            hasHouse += 1;
         }
-        hasHouse += 1;
+    }
+    
+    public int getHouseCount()
+    {
+        return hasHouse;
     }
     
     public void addHotel()
     {
         //Check to ensure no more than 1 hotel can be added
-        if(hasHotel > 0)
+        if(hasHotel < 0)
         {
-            return;
+            hasHotel += 1;
         }
-        hasHotel += 1;
     }
     
     

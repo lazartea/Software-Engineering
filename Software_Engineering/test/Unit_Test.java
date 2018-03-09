@@ -56,7 +56,35 @@ public class Unit_Test {
         player.changeJailedStatus();
         assertEquals(player.isJailed(), true);
         player.changeJailedStatus();
-        assertEquals(player.isJailed(), false);
+        assertEquals(player.isJailed(), false);     
+    }
+    
+    @Test
+    public void testDieRandom()
+    {
+        Die dice = new Die();
+        for(int i = 0; i < 20; i++) //loop 20 times, ensure results are only between
+        {                           //2 and 12 on each loop
+            int x = dice.getRoll();
+            assertTrue(x > 1);  
+            assertTrue(x < 13);
+        }
+    }
+    
+    @Test
+    public void testAddHouse()
+    {
+        Property property = new Property();
+        property.addHouse();
+        assertEquals(property.getHouseCount(), 1);
+        property.addHouse();
+        assertEquals(property.getHouseCount(), 2);
+        property.addHouse();
+        assertEquals(property.getHouseCount(), 3);
+        property.addHouse();
+        assertEquals(property.getHouseCount(), 4);
+        property.addHouse();
+        assertEquals(property.getHouseCount(), 4);
         
     }
     
