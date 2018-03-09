@@ -5,7 +5,7 @@ public class Banker {
     
     public Banker()
     {
-        this.bankerCash = 50000; //Value to be changed
+        this.bankerCash = 50000;
     }
     
     public int getBankerCash()
