@@ -5,8 +5,9 @@ public class Player {
     
     private int playerCash;
     private int tempPiecePicker;
-    boardPiece piece;
-    boolean isJailed;
+    private boardPiece piece;
+    private boolean isJailed;
+    
     
     public enum boardPiece
     {
@@ -20,7 +21,7 @@ public class Player {
         this.isJailed = false;
     }
     
-    public int getCash()
+    public int getPlayerCash()
     {
         return playerCash;
     }

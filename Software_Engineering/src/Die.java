@@ -10,6 +10,8 @@ public class Die {
     public Die()
     {
         this.isDouble = false;
+        this.firstRoll = 0;
+        this.secondRoll  = 0;
     }
     //Create 2 random numbers to simulate 2 dice rolls and check whether they
     //are Doubles.
@@ -21,7 +23,7 @@ public class Die {
         secondRoll =  secondDie.nextInt(6) + 1;
         if(firstRoll == secondRoll)
         {
-            this.isDouble = false;
+            this.isDouble = true;
         }   
         return firstRoll + secondRoll;
     }
