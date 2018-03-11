@@ -8,17 +8,17 @@ public class Cash {
         this.cash = setCash;
     }
     
-    private void addCash(int cash)
+    public void addCash(int cash)
     {
         this.cash += cash;
     }
     
-    private void subractCash(int cash)
+    public void subtractCash(int cash)
     {
         this.cash -= cash;
     }
     
-    private int getCash()
+    public int getCash()
     {
         return cash;
     }

@@ -24,9 +24,9 @@ public class Unit_Test {
     public void testChangePlayerCash()
     {
         Player player = new Player();
-        player.changePlayerCash(-200);
+        player.getPlayerCash().subtractCash(200);
         assertEquals(player.getPlayerCash(), 1300);
-        player.changePlayerCash(400);
+        player.getPlayerCash().addCash(400);
         assertEquals(player.getPlayerCash(), 1700);
     }
     
