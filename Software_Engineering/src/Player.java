@@ -3,7 +3,7 @@
 public class Player {
     
     
-    private int playerCash;
+    private Cash cash;
     private int tempPiecePicker;
     private boardPiece piece;
     private boolean isJailed;
@@ -16,25 +16,11 @@ public class Player {
     
     public Player()
     {
-        this.playerCash = 1500;
         this.tempPiecePicker = 0;
         this.isJailed = false;
+        this.cash = new Cash(1500);
     }
     
-    public int getPlayerCash()
-    {
-        return playerCash;
-    }
-    
-    public void changePlayerCash(int changeBy)
-    {
-        playerCash += changeBy;
-        if(playerCash <= 0)
-        {
-            //Check if player can sell assets, otherwise player loses.
-        }
-    }
-
     //Method assigns static pieces currently, with the intent to later allow
     //Each user to select which piece they want to use.
     public void setBoardPiece()
@@ -67,6 +53,10 @@ public class Player {
         return isJailed;
     }
     
+    public Cash getPlayerCash()
+    {
+        return cash;
+    }
     
     //Changes status from true to false, or vice-versa
     public void changeJailedStatus()
