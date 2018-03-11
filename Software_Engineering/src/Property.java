@@ -50,7 +50,7 @@ public class Property {
     public void addHotel()
     {
         //Check to ensure no more than 1 hotel can be added
-        if(hasHotel < 0)
+        if(hasHotel < 0 && hasHouse == 4)
         {
             hasHotel += 1;
         }
