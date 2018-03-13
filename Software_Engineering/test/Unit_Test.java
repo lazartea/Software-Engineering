@@ -1,7 +1,9 @@
 
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 
 public class Unit_Test {
@@ -15,7 +17,7 @@ public class Unit_Test {
     public void testStartingCash()
     {
         Player player =  new Player(); //Extra parameters to be added when                                           
-        assertEquals(player.getPlayerCash(), 1500); //class  has been fully created
+        assertEquals(player.getPlayerCash().getCash(), 1500); //class  has been fully created
     }
     
     
@@ -25,9 +27,9 @@ public class Unit_Test {
     {
         Player player = new Player();
         player.getPlayerCash().subtractCash(200);
-        assertEquals(player.getPlayerCash(), 1300);
+        assertEquals(player.getPlayerCash().getCash(), 1300);
         player.getPlayerCash().addCash(400);
-        assertEquals(player.getPlayerCash(), 1700);
+        assertEquals(player.getPlayerCash().getCash(), 1700);
     }
     
     //Banker starting cash 50000 (to be changed)
@@ -35,17 +37,17 @@ public class Unit_Test {
     public void testBankerCash()
     {
         Banker banker = new Banker();
-        assertEquals(banker.getBankerCash(), 50000);
+        assertEquals(banker.getBankerCash().getCash(), 50000);
     }
     
     @Test
     public void testChangeBankerCash()
     {
         Banker banker = new Banker();
-        banker.changeBankerCash(-2000);
-        assertEquals(banker.getBankerCash(), 48000);
-        banker.changeBankerCash(6000);
-        assertEquals(banker.getBankerCash(), 54000);
+        banker.getBankerCash().subtractCash(2000);
+        assertEquals(banker.getBankerCash().getCash(), 48000);
+        banker.getBankerCash().addCash(6000);
+        assertEquals(banker.getBankerCash().getCash(), 54000);
     }
     
     @Test
@@ -64,9 +66,9 @@ public class Unit_Test {
     {
         Die dice = new Die();
         for(int i = 0; i < 20; i++) //loop 20 times, ensure results are only between
-        {                           //2 and 12 on each loop
-            int x = dice.getRoll();
-            assertTrue(x > 1);  
+        {                           //2 and 12 on each loop (20 loops to limit compilation time,
+            int x = dice.getRoll(); //and should be enough to almost always give an error if there
+            assertTrue(x > 1);      //is an error with the function
             assertTrue(x < 13);
         }
     }
@@ -86,6 +88,12 @@ public class Unit_Test {
         property.addHouse();
         assertEquals(property.getHouseCount(), 4);
         
+    }
+    @Test
+    public void testPotLuck()
+    {
+        Pot_Luck potluck = new Pot_Luck();
+        assertEquals("You inherit £100", potluck.checkCard());       
     }
     
 }
