@@ -1,20 +1,15 @@
 
 public class Banker {
     
-    private int bankerCash;
+    private Cash cash;
     
     public Banker()
     {
-        this.bankerCash = 50000;
+        this.cash = new Cash(50000);
     }
     
-    public int getBankerCash()
+    public Cash getBankerCash()
     {
-        return bankerCash;
-    }
-    
-    public void changeBankerCash(int changeBy)
-    {
-        bankerCash += changeBy;
+        return cash;
     }
 }
