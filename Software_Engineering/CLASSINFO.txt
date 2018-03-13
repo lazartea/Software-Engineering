@@ -1,0 +1,14 @@
+Current Classes - Banker, Cash, Die, Player, Property
+To be added (excluding GUI) - Board, Jail, OptionCards?(name to be changed), Utlities.
+
+Potentially more to be added depending on the structure of Board.
+
+Board will be the main bulky class, which includes all initialization for the propterty prices.
+Banker is a simple class for the banker, this will include automation at some point.
+Player is a simple class for the player.
+Die is a class that generates a dice roll, and checks for doubles at the same time.
+Property will hold rent prices, is this property owned/who it is owned, and the inital cost of purchasing the property.
+Cash is a simple class to reduce redundency when using cash values.
+
+Each specific type of 'board' type will have its own class, such as properties, utilities, free pass, the random chance (not sure on the name yet) etc.
+This will use when coming to design the squares other than properties, which has not been done yet.
