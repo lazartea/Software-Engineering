@@ -11,4 +11,4 @@ Property will hold rent prices, is this property owned/who it is owned, and the 
 Cash is a simple class to reduce redundency when using cash values.
 
 Each specific type of 'board' type will have its own class, such as properties, utilities, free pass, the random chance (not sure on the name yet) etc.
-This will use when coming to design the squares other than properties, which has not been done yet.
+Once other board squares are more planned, and inheritance (parent) class will be added of type "SquarePiece" which will give the basis of each SquarePiece
