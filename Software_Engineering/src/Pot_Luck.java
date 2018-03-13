@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Pot_Luck {
     
-    String str;
-    List<String> potLuck = new ArrayList<String>();
+    private String str;
+    private List<String> potLuck = new ArrayList<String>();
     
     public Pot_Luck()
     {
