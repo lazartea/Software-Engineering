@@ -1,0 +1,5 @@
+Unit Testing for all development - To be done simultaneously
+Opportunity Card Class - Similar to Potluck class
+Main board class
+Seperate isJailed(from player class) into seperate class which can track turns in jail etc.
+Data for property/utilities to be read by program (this could be done in board class)

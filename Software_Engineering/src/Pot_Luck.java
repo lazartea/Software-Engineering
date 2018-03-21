@@ -25,7 +25,7 @@ public class Pot_Luck {
     {
         return potLuck.get(0);
     }
-    //This can 
+    //This can shuffle the cards
     public void shuffleCards()
     {
         Collections.shuffle(potLuck);
