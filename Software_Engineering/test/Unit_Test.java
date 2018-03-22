@@ -1,7 +1,7 @@
-
-
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.List;
+import java.util.Arrays;
 
 
 public class Unit_Test {
@@ -86,6 +86,14 @@ public class Unit_Test {
         property.addHouse();
         assertEquals(property.getHouseCount(), 4);
         
+    }
+    
+    @Test
+    public void testExcel()
+    {
+        Property_Data data = new Property_Data();
+        List<String> expected = Arrays.asList("1.0", "Go", "N/A", "Collect £200", "No", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
+        assertEquals(expected,data.getEntry(0));
     }
     
 }
