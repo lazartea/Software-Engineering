@@ -1,6 +1,4 @@
 
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -59,10 +57,10 @@ public class Unit_Test {
     {
         Player player = new Player();
         assertEquals(player.getJailed().isJailed(), false);
-       // player.getJailed().changeJailed();
-       // assertEquals(player.getJailed().isJailed(), true);
-       // player.getJailed().changeJailed();
-      //  assertEquals(player.getJailed().isJailed(), false);    
+        player.getJailed().changeJailed();
+        assertEquals(player.getJailed().isJailed(), true);
+        player.getJailed().changeJailed();
+        assertEquals(player.getJailed().isJailed(), false);    
     }
     
     @Test
