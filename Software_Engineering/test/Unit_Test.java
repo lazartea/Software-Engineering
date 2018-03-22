@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+=======
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.util.List;
+import java.util.Arrays;
+>>>>>>> 1bc4cfb1f8c07d2609e0245df06dda201ba431b0
 
 
 public class Unit_Test {
@@ -102,6 +109,14 @@ public class Unit_Test {
     {
         Pot_Luck potluck = new Pot_Luck();
         assertEquals("You inherit £100", potluck.checkCard());       
+    }
+    
+    @Test
+    public void testExcel()
+    {
+        Property_Data data = new Property_Data();
+        List<String> expected = Arrays.asList("1.0", "Go", "N/A", "Collect £200", "No", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
+        assertEquals(expected,data.getEntry(0));
     }
     
 }

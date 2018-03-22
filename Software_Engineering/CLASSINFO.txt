@@ -11,7 +11,11 @@ Property will hold rent prices, is this property owned/who it is owned, and the 
 Cash is a simple class to reduce redundency when using cash values.
 
 Each specific type of 'board' type will have its own class, such as properties, utilities, free pass, the random chance (not sure on the name yet) etc.
+<<<<<<< HEAD
 This will use when coming to design the squares other than properties, which has not been done yet.
 
 Note - GUI currently planned to be developed using Java SWING ( https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html )
 and potentially 2D Graphics ( https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics2D.html ) if time allows.
+=======
+Once other board squares are more planned, and inheritance (parent) class will be added of type "SquarePiece" which will give the basis of each SquarePiece
+>>>>>>> 1bc4cfb1f8c07d2609e0245df06dda201ba431b0
