@@ -12,7 +12,7 @@ public class Jailed {
     
     public boolean isJailed()
     {
-        return isJailed();
+        return isJailed;
     }
     
     //Toggles jailed status without need 2 methods
@@ -20,12 +20,12 @@ public class Jailed {
     {
         if(this.isJailed() == true)
         {
-            this.isJailed = false;
+            isJailed = false;
         }
         else
         {
-            this.isJailed = true;
-            this.turnsJailed = 0;   
+            isJailed = true;
+            turnsJailed = 0;   
         }  
     }
     
