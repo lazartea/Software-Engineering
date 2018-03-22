@@ -1,13 +1,11 @@
 
 
 public class Player {
-    
-    
+        
     private Cash cash;
     private int tempPiecePicker;
     private boardPiece piece;
-    private boolean isJailed;
-    
+    private Jailed jailStatus;
     
     public enum boardPiece
     {
@@ -17,7 +15,7 @@ public class Player {
     public Player()
     {
         this.tempPiecePicker = 0;
-        this.isJailed = false;
+        this.jailStatus = new Jailed();
         this.cash = new Cash(1500);
     }
     
@@ -47,29 +45,13 @@ public class Player {
         }
         tempPiecePicker++;
     }
-    
-    public boolean isJailed()
+    public Jailed getJailed()
     {
-        return isJailed;
+        return this.jailStatus;
     }
-    
     public Cash getPlayerCash()
     {
-        return cash;
+        return this.cash;
     }
-    
-    //Changes status from true to false, or vice-versa
-    public void changeJailedStatus()
-    {
-        if(isJailed == true)
-        {
-            isJailed = false;
-        }
-        else
-        {
-            isJailed = true;
-        }
-    }
-        
-    
+
 }

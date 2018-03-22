@@ -54,11 +54,18 @@ public class Unit_Test {
     public void testJail()
     {
         Player player = new Player();
-        assertEquals(player.isJailed(), false);
-        player.changeJailedStatus();
-        assertEquals(player.isJailed(), true);
-        player.changeJailedStatus();
-        assertEquals(player.isJailed(), false);     
+        assertEquals(player.getJailed().isJailed(), false);
+        player.getJailed().changeJailed();
+        assertEquals(player.getJailed().isJailed(), true);
+        player.getJailed().changeJailed();
+        assertEquals(player.getJailed().isJailed(), false);    
+    }
+    
+    @Test
+    public void testJailInc()
+    {
+        Player player = new Player();
+        
     }
     
     @Test
@@ -73,6 +80,7 @@ public class Unit_Test {
         }
     }
     
+    //Testing increasing houses. Last assert ensures 4 is maximum
     @Test
     public void testAddHouse()
     {
