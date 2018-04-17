@@ -1,21 +1,66 @@
-
 public class Property {
     
     private boolean isOwned;
     private int hasHouse;
     private int hasHotel;
+    
     private int cost;
     private int rentDue;
+    private int house;
+    private int house1;
+    private int house2;
+    private int house3;
+    private int house4;
+    private int hotel;
+    
+    private int id;
+    private String space;
+    
+    private propertyAction action;
+    private propertyGroup group;
+    
     private Player buyHouse;
-    
-    
-    public Property()
-    {
+
+    //houses
+    public Property(int id, String space, int cost, int rent, int house, int house1, int house2, int house3, int house4, int hotel, propertyGroup group){
         this.isOwned = false;
         this.hasHouse = 0;
         this.hasHotel = 0;
-        this.rentDue = 0;
-        this.cost = 0; //Default values for now
+        
+        this.id = id;
+        this.space = space;
+        this.cost = cost;
+        this.rentDue = rent;
+        this.house = house;
+        this.house1 = house1;
+        this.house2 = house2;
+        this.house3 = house3;
+        this.house4 = house4;
+        this.hotel = hotel;
+        this.group = group;
+    }
+    
+    //jail
+    public Property(int id, String space) {
+        this.id = id;
+        this.space = space;
+        this.action = propertyAction.JAIL;
+    }
+    //ultilites/stations
+    public Property(int id, String space, propertyGroup group, int cost) {
+
+        this.isOwned = false;
+        this.id = id;
+        this.space = space;
+        this.group = group;
+        this.cost = cost;
+    }
+    
+    //action spaces
+    public Property(int id, String space, propertyAction action) {
+        this.id = id;
+        this.space = space;
+        this.action = action;
     }
     
     public boolean isOwned()
@@ -43,8 +88,27 @@ public class Property {
     }
     
     private int getRent()
-    {
-        return rentDue;
+    {//this will only work for houses; the ultilites/stations will need special logic
+        int rent = rentDue;
+        if (hasHotel > 0) {
+            rent = hotel;
+        } else {
+            switch(getHouseCount()) {
+                case 1:
+                    rent = house1;
+                    break;
+                case 2:
+                    rent = house2;
+                    break;
+                case 3: 
+                    rent = house3;
+                    break;
+                case 4:
+                    rent = house4;
+                    break;
+            }     
+        }
+        return rent;
     }
     
     public void addHotel()
@@ -61,6 +125,8 @@ public class Property {
         this.buyHouse = player;
     }
     
-    
+    public int getId(){
+        return this.id;
+    }
     
 }

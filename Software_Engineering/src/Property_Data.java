@@ -44,11 +44,6 @@ public class Property_Data {
                
             }
         } catch(IOException e){System.out.println("Cannot Find Excel File");}
-    
-        Excel.forEach((item) -> {
-            System.out.println(item);
-        });
-        
         
     }
    
