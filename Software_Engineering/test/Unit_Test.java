@@ -1,7 +1,3 @@
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.util.List;
@@ -66,8 +62,7 @@ public class Unit_Test {
     @Test
     public void testJailInc()
     {
-        Player player = new Player();
-        
+       Player player = new Player();    
     }
     
     @Test
@@ -82,11 +77,10 @@ public class Unit_Test {
         }
     }
     
-    //Testing increasing houses. Last assert ensures 4 is maximum
     @Test
-    public void testAddHouse()
+    public void testHouse()
     {
-        Property property = new Property();
+        Property property = new Property(2, "Fake Property", 200, 300, 350, 400, 450, 500, 550, 600, propertyGroup.BLUE);
         property.addHouse();
         assertEquals(property.getHouseCount(), 1);
         property.addHouse();
@@ -105,13 +99,23 @@ public class Unit_Test {
         Pot_Luck potluck = new Pot_Luck();
         assertEquals("You inherit £100", potluck.checkCard());       
     }
-    
     @Test
     public void testExcel()
     {
         Property_Data data = new Property_Data();
-        List<String> expected = Arrays.asList("1.0", "Go", "N/A", "Collect £200", "No", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
+         assertEquals(data.Excel.size(),40);
+        List<String> expected = Arrays.asList("1.0", "Go", "Collect £200", "No");
         assertEquals(expected,data.getEntry(0));
+        assertEquals(expected.size(),4);
     }
+    
+    @Test
+    public void testBoard() {
+        Board b = new Board();
+        assertEquals(b.gameBoard.size(),40);
+        assertEquals(b.gameBoard.get(0).getId(),1);
+        assertEquals(b.gameBoard.get(39).getId(),40);
+    }
+            
     
 }
