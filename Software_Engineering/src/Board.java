@@ -7,11 +7,13 @@ import java.util.Collections;
 /**
  *
  * @author amylazarte
+ * The Board class represents the board. It contains all of the property objects, which are pulled from the property data
  */
 public class Board {
     public List<Property> gameBoard;
     
-    
+    //This constructor iterates through the generated property data to form a linked list of board spaces/properties
+    // properties are differentiated by type (Utility, property, action, etc)
     Board() {
         this.gameBoard = Collections.synchronizedList(new LinkedList<Property>());
         Property_Data data = new Property_Data();
@@ -33,14 +35,14 @@ public class Board {
                     p = new Property(id,space);
                     gameBoard.add(p);
                     break;
-                case 4: //action
+                case 4: //actions
                     id = (int) Double.parseDouble(propertySpace.get(0).toString());
                     space = propertySpace.get(1).toString();
                     propertyAction action = propertyAction.fromString(propertySpace.get(2).toString());
                     p = new Property(id, space, action);
                     gameBoard.add(p);
                     break;
-                case 6: //util need to add rules somehow
+                case 6: //utilities
                     id = (int) Double.parseDouble(propertySpace.get(0).toString());
                     space = propertySpace.get(1).toString();
                     group = propertyGroup.fromString(propertySpace.get(2).toString());
@@ -48,7 +50,7 @@ public class Board {
                     p = new Property(id, space, group, cost);
                     gameBoard.add(p);
                     break;
-                case 11: //house 
+                case 11: //houses
                     id = (int) Double.parseDouble(propertySpace.get(0).toString());
                     space = propertySpace.get(1).toString();
                     group = propertyGroup.fromString(propertySpace.get(2).toString());

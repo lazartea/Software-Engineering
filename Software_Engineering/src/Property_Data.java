@@ -6,6 +6,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ *
+ * @author amylazarte
+ * This class parses all of the data from the excel file into usable data
+ * which can then be passed along to the Property class
+ */
 public class Property_Data {
     private String FILE_NAME = "BoardData/PropertyTycoonBoardData.xlsx";
     List<List<String>> Excel = new ArrayList<>();

@@ -1,6 +1,7 @@
 /**
  *
  * @author amylazarte
+ * enum to represent different groups of property
  */
 public enum propertyGroup {
     BROWN("Brown"),
