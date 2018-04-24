@@ -1,3 +1,6 @@
+/*
+* This class represents a single property's data. There are separate constructors for different types of properties
+*/
 public class Property {
     
     private boolean isOwned;
