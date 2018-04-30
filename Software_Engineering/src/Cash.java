@@ -20,7 +20,7 @@ public class Cash {
     
     public int getCash()
     {
-        return cash;
+        return this.cash;
     }
     
     

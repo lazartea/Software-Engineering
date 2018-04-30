@@ -85,12 +85,12 @@ public class Property {
         return hasHouse;
     }
     
-    private int getCost()
+    public int getCost()
     {
         return cost;
     }
     
-    private int getRent()
+    public int getRent()
     {//this will only work for houses; the ultilites/stations will need special logic
         int rent = rentDue;
         if (hasHotel > 0) {
@@ -126,6 +126,7 @@ public class Property {
     public void buyHouse(Player player)
     {
         this.buyHouse = player;
+        this.isOwned = true;
     }
     
     public int getId(){

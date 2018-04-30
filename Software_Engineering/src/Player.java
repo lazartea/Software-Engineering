@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 
 public class Player {
         
@@ -6,6 +9,9 @@ public class Player {
     private int tempPiecePicker;
     private boardPiece piece;
     private Jailed jailStatus;
+    private int boardPosition;
+    private boolean firstCycle;  //Checks for whether first cycle has been completed
+    private ArrayList<Property> properties;
     
     public enum boardPiece
     {
@@ -17,6 +23,7 @@ public class Player {
         this.tempPiecePicker = 0;
         this.jailStatus = new Jailed();
         this.cash = new Cash(1500);
+        this.properties = new ArrayList<Property>();
     }
     
     //Method assigns static pieces currently, with the intent to later allow
@@ -49,9 +56,46 @@ public class Player {
     {
         return this.jailStatus;
     }
+    public void setJailed()
+    {
+        jailStatus.changeJailed();
+    }
     public Cash getPlayerCash()
     {
         return this.cash;
+    }
+    
+    public int boardPosition()
+    {
+        return boardPosition;
+    }
+    
+    public void movePosition(int a)
+    {
+        this.boardPosition += a;
+    }
+    public void wrapPosition()
+    {
+        this.boardPosition = 0;
+    }   
+    public void passGo()
+    {
+        this.cash.addCash(200);
+        firstCycle = true;     
+    }   
+    public boolean doneCycle()
+    {
+        return firstCycle;
+    }
+    
+    public void addProperty(Property property)
+    {
+        properties.add(property);
+    }
+    
+    public void removeProperty(Property property)
+    {
+        properties.remove(property);
     }
 
 }
