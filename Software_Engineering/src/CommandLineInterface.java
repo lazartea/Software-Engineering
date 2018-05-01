@@ -1,4 +1,3 @@
-
 /**
  *
  * @author amylazarte
@@ -11,6 +10,10 @@ class CommandLineInterface implements UserInterface {
         this.printGame = s;
     }
     
+    /*
+    * Displays current player's location on the board 
+    * @params int p, current player's location on the board
+    */ 
     @Override
     public void displayLocation(int i) {
         String[] position = {"                         ","\n"," JL P UT P P S O PL O O FP","\n"," B                       R","\n"," B                      OK","\n"," OK                      R","\n"," B                       R","\n"," S                       S", "\n"," T                       Y", "\n", " Br                      Y", "\n", " PL                      U","\n"," Br                      Y","\n", " Go P T P OK S G PL G G GJ","\n","                         "};
@@ -127,7 +130,10 @@ class CommandLineInterface implements UserInterface {
         System.out.print(printGame);
 
     }
-
+    /*
+    * Sets the number of players in a game based on user input
+    * @return number of players
+    */
     @Override
     public int getPlayerNumber() {
         int playerCount;
@@ -147,7 +153,10 @@ class CommandLineInterface implements UserInterface {
         }
         return playerCount;
     }
-
+    /*
+    * Sets whether or not a game agent is used based on user input
+    * @return true if a game agent is wanted, false otherwise
+    */
     @Override
     public boolean getGameAgent() {
         int gameAgent;
@@ -167,7 +176,10 @@ class CommandLineInterface implements UserInterface {
             }
         return gameAgent==1;
     }
-
+    /*
+    * Sets whether the game is full or abridged based on user input
+    * @return true if game is full, false otherwise
+    */
     @Override
     public boolean getFull() {
         int gameType;
@@ -189,11 +201,19 @@ class CommandLineInterface implements UserInterface {
         return gameType == 1;
     }
     
+    /*
+    * Takes in user input for each turn
+    * stub code at the moment
+    */
     @Override
     public void getTurn() {
         
     }
     
+    /*
+    * Sets the piece used for each player based on user input
+    * @return int representing a piece
+    */
     @Override
     public int getPiece(int i) {
         int pieceType;
