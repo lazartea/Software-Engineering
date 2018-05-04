@@ -43,8 +43,9 @@ public class boardLogic {
                 {
                     player.setJailed();
                     break;
-                }
-            }         
+                }               
+            }
+            //Needs option to ask player if they would like to buy house
         }while(i < 3 && die.isDouble());             
     }
     
@@ -87,6 +88,6 @@ public class boardLogic {
             player.getPlayerCash().subtractCash(property.getCost());
             return true;
         }      
-    }
+    }                
 }
 
