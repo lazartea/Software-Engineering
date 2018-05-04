@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Game {
     
-
+    /* Game Constructor-- create an instance of the current game
+    * @params playerCount, gameAgent, gameType
+    *
+    */
     private Game(int playerCount, boolean gameAgent, boolean gameType) {
         Board b = new Board();
         CommandLineInterface cl = new CommandLineInterface();
@@ -47,7 +50,9 @@ public class Game {
             }            
         }
     }
-
+    /*
+    * Main method: calls cli to grab game set up data, creates game
+    */
     public static void main(String [] args) {
         int playerCount;
         boolean gameAgent,gameType;
