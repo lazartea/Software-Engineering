@@ -2,6 +2,7 @@
  *
  * @author amylazarte
  */
+import java.util.List;
 import java.util.Scanner;
 public class Game {
     
@@ -11,6 +12,8 @@ public class Game {
     */
     private Game(int playerCount, boolean gameAgent, boolean gameType) {
         Board b = new Board();
+        List<Property> gameBoard = b.getBoard();
+        
         CommandLineInterface cl = new CommandLineInterface();
         
         for (int i = 1; i <= playerCount; i++) {

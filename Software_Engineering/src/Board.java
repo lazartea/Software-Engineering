@@ -66,7 +66,11 @@ public class Board {
                     break;
             } 
         }
+        
     }
     
+    public List<Property> getBoard() {
+        return this.gameBoard;
+    }
     
 }
