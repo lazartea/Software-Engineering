@@ -67,10 +67,11 @@ public class Board {
             } 
         }
         
+
     }
-    
-    public List<Property> getBoard() {
-        return this.gameBoard;
+    public List<Property> getBoard()
+    {
+        return gameBoard;
     }
-    
+
 }

@@ -2,7 +2,9 @@
  *
  * @author amylazarte
  */
+
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Game {
     
@@ -15,19 +17,42 @@ public class Game {
         List<Property> gameBoard = b.getBoard();
         
         CommandLineInterface cl = new CommandLineInterface();
+        ArrayList<Player> playerList = new ArrayList<Player>();
+        boardLogic bl = new boardLogic(playerCount);
+        Board board = new Board();
         
-        for (int i = 1; i <= playerCount; i++) {
+        for (int i = 0; i < playerCount; i++) {
             Player p = new Player();
-            p.setBoardPiece(cl.getPiece(i));
-           
+            playerList.add(p);
+            p.setBoardPiece(cl.getPiece(i));           
         }
         
         if (gameAgent) {
             //create gameAgent, assign piece randomly 
         }
         
-        
-        //do some logic?
+        for(int i  = 0; i < playerCount; i++)
+        {
+            System.out.println("Player " + i+1 + "'s turn.");
+            boolean turn = true;
+            System.out.println(board.getBoard().size());
+            while(turn)
+            {
+               bl.movePlayer(playerList.get(i));
+               cl.displayLocation(i);
+               System.out.println("1:End Turn  2:Buy property"); //More to be added
+               Scanner scanner = new Scanner(System.in);
+               int option = scanner.nextInt();
+               switch(option)
+               {
+                   case 1:
+                       System.out.println("Ending Turn");
+                       turn = false;
+                   case 2:
+                       bl.buyHouse(playerList.get(i), board.getBoard().get(playerList.get(i).boardPosition()));
+               }
+            }            
+        }
     }
     /*
     * Main method: calls cli to grab game set up data, creates game

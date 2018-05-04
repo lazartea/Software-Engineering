@@ -20,7 +20,7 @@ public class Pot_Luck {
         } catch(Exception e){System.out.println("Cannot Find Potluck File");} 
     }
     
-    //DUMMY CLASS, used with a dummy unit test to test the potluck file is being read correctly
+    //DUMMY METHOD, used with a dummy unit test to test the potluck file is being read correctly
     public String checkCard()
     {
         return potLuck.get(0);
