@@ -135,4 +135,12 @@ public class Property {
     public int getId(){
         return this.id;
     }        
+    
+    public propertyAction getAction() {
+        return this.action;
+    }
+    
+    public Player owner() {
+        return buyHouse;
+    }
 }

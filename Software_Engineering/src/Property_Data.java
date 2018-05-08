@@ -33,9 +33,7 @@ public class Property_Data {
                for (int cn = 0; cn < 12; cn++) {
                   Cell c = r.getCell(cn);
                   
-                  if (c == null) {
-                      excelRow.add("N/A");
-                  } else {
+                  if (c != null) {
                     if (c.getCellTypeEnum() == CellType.STRING) {
                         excelRow.add(c.getStringCellValue());
                     } else {

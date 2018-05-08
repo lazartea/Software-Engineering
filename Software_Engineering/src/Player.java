@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 
 public class Player {
-        
+    private int id;
+    private boolean getOutJail;
     private Cash cash;
     private int tempPiecePicker;
     private boardPiece piece;
@@ -69,6 +70,11 @@ public class Player {
         return boardPosition;
     }
     
+    public void setBoardPosition(int boardPosition)
+    {
+        this.boardPosition = boardPosition;
+    }
+    
     public void movePosition(int a)
     {
         this.boardPosition += a;
@@ -96,5 +102,16 @@ public class Player {
     {
         properties.remove(property);
     }
-
+    
+    public void setGetOut(boolean b) {
+        this.getOutJail = b;
+    }
+    
+    public boolean getGetOut() {
+        return this.getOutJail;
+    }
+    
+    public int getID() {
+        return this.id;
+    }
 }

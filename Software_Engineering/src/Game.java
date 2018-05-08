@@ -14,6 +14,7 @@ public class Game {
     private Game(int playerCount, boolean gameAgent, boolean gameType) {
         Board b = new Board();
         List<Property> gameBoard = b.getBoard();
+        Pot_Luck potluck = new Pot_Luck();
         
         CommandLineInterface cl = new CommandLineInterface();
         ArrayList<Player> playerList = new ArrayList<Player>();
@@ -40,6 +41,48 @@ public class Game {
                 {
                    bl.movePlayer(playerList.get(i));
                    cl.displayLocation(playerList.get(i).boardPosition());
+                   Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
+                    if (currentPosition.getAction() == propertyAction.TAKE) { //if landed on a card
+                        if ((currentPosition.getId() == 3) || (currentPosition.getId() == 18) || (currentPosition.getId() == 34)) { //potLuck
+                            Card c = potluck.drawCard();
+                            System.out.println(c.getText());
+                            switch (c.getType()) {
+                                case FREE: 
+                                    playerList.get(i).setGetOut(true);
+                                    break;
+                                case COLLECT:
+                                    playerList.get(i).getPlayerCash().addCash(c.getAmount());
+                                    break;
+                                case COLLECTFROM:
+                                    int size = playerList.size();
+                                    int total = c.getAmount() * size;
+                                    playerList.get(i).getPlayerCash().addCash(total);
+                                    
+                                    for (Player p: playerList) {
+                                        if (p != playerList.get(i)) {
+                                            p.getPlayerCash().subtractCash(c.getAmount());
+                                        }
+                                    }
+                                    break;
+                                case PAY:
+                                    playerList.get(i).getPlayerCash().subtractCash(c.getAmount());
+                                    break;
+                                case MOVE:
+                                    playerList.get(i).setBoardPosition(c.getPosition());
+                                    if (c.getPosition() == 31) {
+                                        playerList.get(i).setJailed();
+                                    }
+                                    break;
+                                case PAY_DRAW:
+                                    //we need to put a scanner here so that they can choose what they want to do
+                                    //right now, we'll default to paying
+                                    playerList.get(i).getPlayerCash().subtractCash(c.getAmount());
+                                    break;
+                                  
+                            }
+                        }
+                    }
+                   
                    //Checks the board position and pays rent if owned by another player
                    if(board.getBoard().get(playerList.get(i).boardPosition()).isOwned()
                            && board.getBoard().get(playerList.get(i).boardPosition()).owner() != playerList.get(i))
