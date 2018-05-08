@@ -1,0 +1,16 @@
+Bank pays you divided of £50; COLLECT; 50
+You have won a lip sync battle. Collect £100; COLLECT; 100
+Advance to Turing Heights; MOVE; 40
+Advance to Han Xin Gardens. If you pass GO, collect £200; MOVE; 25
+Fined £15 for speeding; PAY; 15
+Pay university fees of £150; PAY; 150
+Take a trip to Hove station. If you pass GO collect £200; MOVE; 16
+Loan matures, collect £150; COLLECT; 150
+You are assessed for repairs, £40/house, £115/hotel; PAYPER; 40; 115
+Advance to GO; MOVE; 1
+You are assessed for repairs, £25/house, £100/hotel; PAYPER; 25; 100
+Go back 3 spaces; MOVEBACK; -3
+Advance to Skywalker Drive. If you pass GO collect £200; MOVE; 12
+Go to jail. Do not pass GO, do not collect £200; MOVE; 31
+Drunk in charge of a skateboard. Fine £20; PAY; 20
+Get out of jail free; FREE

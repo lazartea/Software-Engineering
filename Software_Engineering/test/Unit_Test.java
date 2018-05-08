@@ -97,7 +97,14 @@ public class Unit_Test {
     public void testPotLuck()
     {
         Pot_Luck potluck = new Pot_Luck();
-        assertEquals("You inherit £100", potluck.checkCard());       
+        assertEquals("You inherit £100", potluck.checkCard(0));       
+    }
+    
+    @Test
+    public void testOK()
+    {
+        OpportunityKnocks OK = new OpportunityKnocks();
+        assertEquals("Bank pays you divided of £50", OK.checkCard(0));       
     }
     @Test
     public void testExcel()

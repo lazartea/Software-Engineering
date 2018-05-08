@@ -1,4 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+/**
+ *
+ * @author amylazarte
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -7,23 +16,21 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Pot_Luck {
-    
+public class OpportunityKnocks {
     private String str;
-    private List<String> potLuck = new ArrayList<>();
+    private List<String> oppKnocks = new ArrayList<>();
     private List<Card> allCards = new ArrayList<>();
     private Queue<Card> currentDeck = new LinkedList<>();
     
-    public Pot_Luck()
-    {
+    public OpportunityKnocks() {
         try{
-            BufferedReader read = new BufferedReader(new FileReader("draw_card/potluck.txt"));
+            BufferedReader read = new BufferedReader(new FileReader("draw_card/OpportunityKnocks.txt"));
             while((str = read.readLine()) != null){
-                potLuck.add(str);
+                oppKnocks.add(str);
             }
-        } catch(Exception e){System.out.println("Cannot Find Potluck File");} 
+        } catch(Exception e){System.out.println("Cannot Find Opportunity Knocks File");} 
         
-        for (String s: potLuck) {
+        for (String s: oppKnocks) {
             String[] splitString = s.split("; ");
             String text = splitString[0];
             CardType p = CardType.COLLECT; //initialize
@@ -37,17 +44,8 @@ public class Pot_Luck {
                     c = new Card(text, p, value);
                     allCards.add(c);
                     break;
-                case "COLLECTFROM": p = CardType.COLLECTFROM;
-                    value = Integer.parseInt(splitString[2]);
-                    c = new Card(text, p, value);
-                    allCards.add(c);
-                    break;
+                
                 case "PAY": p = CardType.PAY;
-                    value = Integer.parseInt(splitString[2]);
-                    c = new Card(text, p, value);
-                    allCards.add(c);
-                    break;
-                case "PAY_DRAW": p = CardType.PAY_DRAW;
                     value = Integer.parseInt(splitString[2]);
                     c = new Card(text, p, value);
                     allCards.add(c);
@@ -61,6 +59,16 @@ public class Pot_Luck {
                     c = new Card(text, p, position);
                     allCards.add(c);
                     break;
+                case "MOVEBACK":
+                    int spaces = Integer.parseInt(splitString[2]);
+                    c = new Card(text, p, spaces);
+                    allCards.add(c);
+                    break;
+                case "PAYPER":
+                    int house = Integer.parseInt(splitString[2]);
+                    int hotel = Integer.parseInt(splitString[3]);
+                    c = new Card(text, p, house, hotel);
+                    break;
             }
             
         }
@@ -68,7 +76,6 @@ public class Pot_Luck {
         shuffleCards();
     }
     
-    //DUMMY METHOD, used with a dummy unit test to test the potluck file is being read correctly
     public String checkCard(int i)
     {
         return allCards.get(i).getText();
@@ -95,9 +102,5 @@ public class Pot_Luck {
         currentDeck.add(c); //add to bottom of deck
         return c;
     }
+        
 }
-
-    
-    
-   
-

@@ -88,6 +88,11 @@ public class Property {
         return hasHouse;
     }
     
+    public int getHotelCount()
+    {
+        return hasHotel;
+    }
+    
     public int getCost()
     {
         return cost;
@@ -135,4 +140,12 @@ public class Property {
     public int getId(){
         return this.id;
     }        
+    
+    public propertyAction getAction() {
+        return this.action;
+    }
+    
+    public Player owner() {
+        return buyHouse;
+    }
 }
