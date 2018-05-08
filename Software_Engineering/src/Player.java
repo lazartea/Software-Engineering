@@ -1,151 +1,120 @@
+import java.util.ArrayList;
 
-import java.util.List;
 
-/*
-* This class represents a single property's data. There are separate constructors for different types of properties
-*/
-public class Property {
-    
-    private boolean isOwned;
-    private int hasHouse;
-    private int hasHotel;
-    
-    private int cost;
-    private int rentDue;
-    private int house;
-    private int house1;
-    private int house2;
-    private int house3;
-    private int house4;
-    private int hotel;
-    
+
+public class Player {
     private int id;
-    private String space;
+    private boolean getOutJail;
+    private Cash cash;
+    private int tempPiecePicker;
+    private boardPiece piece;
+    private Jailed jailStatus;
+    private int boardPosition;
+    private boolean firstCycle;  //Checks for whether first cycle has been completed
+    private ArrayList<Property> properties;
     
-    private propertyAction action;
-    private propertyGroup group;
-    
-    private Player buyHouse;
-
-    //houses
-    public Property(int id, String space, int cost, int rent, int house, int house1, int house2, int house3, int house4, int hotel, propertyGroup group){
-        this.isOwned = false;
-        this.hasHouse = 0;
-        this.hasHotel = 0;
-        
-        this.id = id;
-        this.space = space;
-        this.cost = cost;
-        this.rentDue = rent;
-        this.house = house;
-        this.house1 = house1;
-        this.house2 = house2;
-        this.house3 = house3;
-        this.house4 = house4;
-        this.hotel = hotel;
-        this.group = group;
-    }
-    
-    //jail
-    public Property(int id, String space) {
-        this.id = id;
-        this.space = space;
-        this.action = propertyAction.JAIL;
-    }
-    //ultilites/stations
-    public Property(int id, String space, propertyGroup group, int cost) {
-
-        this.isOwned = false;
-        this.id = id;
-        this.space = space;
-        this.group = group;
-        this.cost = cost;
-    }
-    
-    //action spaces
-    public Property(int id, String space, propertyAction action) {
-        this.id = id;
-        this.space = space;
-        this.action = action;
-    }
-    
-    public boolean isOwned()
+    public enum boardPiece
     {
-        return isOwned;
+        BOOT, SMARTPHONE, GOBLET, HATSTAND, CAT, SPOON
     }
     
-    public void addHouse()
+    public Player()
     {
-        //Check to ensure no more than 4 houses have been bought
-        if(hasHouse < 4)
+        this.jailStatus = new Jailed();
+        this.cash = new Cash(1500);
+        this.properties = new ArrayList<Property>();
+    }
+    
+    //Method assigns static pieces currently, with the intent to later allow
+    //Each user to select which piece they want to use.
+    public void setBoardPiece(int i)
+    {
+        switch(i)
         {
-            hasHouse += 1;
+            case 0: this.piece = boardPiece.BOOT;
+                    break;
+                    
+            case 1: this.piece = boardPiece.SMARTPHONE;
+                    break;
+                    
+            case 2: this.piece = boardPiece.GOBLET;
+                    break;
+                    
+            case 3: this.piece = boardPiece.HATSTAND;
+                    break;
+                  
+            case 4: this.piece = boardPiece.CAT;
+                    break;
+                   
+            case 5: this.piece = boardPiece.SPOON;
+                    break;                              
         }
+        tempPiecePicker++;
     }
-    
-    public int getHouseCount()
+    public Jailed getJailed()
     {
-        return hasHouse;
+        return this.jailStatus;
     }
-    
-    public int getHotelCount()
+    public void setJailed()
     {
-        return hasHotel;
+        jailStatus.changeJailed();
     }
-    
-    public int getCost()
+    public Cash getPlayerCash()
     {
-        return cost;
+        return this.cash;
     }
     
-    public int getRent()
-    {//this will only work for houses; the ultilites/stations will need special logic
-        int rent = rentDue;
-        if (hasHotel > 0) {
-            rent = hotel;
-        } else {
-            switch(getHouseCount()) {
-                case 1:
-                    rent = house1;
-                    break;
-                case 2:
-                    rent = house2;
-                    break;
-                case 3: 
-                    rent = house3;
-                    break;
-                case 4:
-                    rent = house4;
-                    break;
-            }     
-        }
-        return rent;
-    }
-    
-    public void addHotel()
+    public int boardPosition()
     {
-        //Check to ensure no more than 1 hotel can be added
-        if(hasHotel < 0 && hasHouse == 4)
-        {
-            hasHotel += 1;
-        }
+        return boardPosition;
     }
     
-    public void buyHouse(Player player)
+    public void setBoardPosition(int boardPosition)
     {
-        this.buyHouse = player;
-        this.isOwned = true;
+        this.boardPosition = boardPosition;
     }
     
-    public int getId(){
+    public void movePosition(int a)
+    {
+        this.boardPosition += a;
+    }
+    public void wrapPosition()
+    {
+        this.boardPosition = 0;
+    }   
+    public void passGo()
+    {
+        this.cash.addCash(200);
+        firstCycle = true;     
+    }   
+    public boolean doneCycle()
+    {
+        return firstCycle;
+    }
+    
+    public void addProperty(Property property)
+    {
+        properties.add(property);
+    }
+    
+    public void removeProperty(Property property)
+    {
+        properties.remove(property);
+    }
+    
+    public void setGetOut(boolean b) {
+        this.getOutJail = b;
+    }
+    
+    public boolean getGetOut() {
+        return this.getOutJail;
+    }
+    
+    public int getID() {
         return this.id;
-    }        
-    
-    public propertyAction getAction() {
-        return this.action;
     }
     
-    public Player owner() {
-        return buyHouse;
+    public ArrayList<Property> getProperties() {
+        return this.properties;
     }
 }
