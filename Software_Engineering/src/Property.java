@@ -88,6 +88,11 @@ public class Property {
         return hasHouse;
     }
     
+    public int getHotelCount()
+    {
+        return hasHotel;
+    }
+    
     public int getCost()
     {
         return cost;

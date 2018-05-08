@@ -15,6 +15,7 @@ public class Game {
         Board b = new Board();
         List<Property> gameBoard = b.getBoard();
         Pot_Luck potluck = new Pot_Luck();
+        OpportunityKnocks opportunityKnocks = new OpportunityKnocks();
         
         CommandLineInterface cl = new CommandLineInterface();
         ArrayList<Player> playerList = new ArrayList<Player>();
@@ -43,9 +44,13 @@ public class Game {
                    cl.displayLocation(playerList.get(i).boardPosition());
                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
                     if (currentPosition.getAction() == propertyAction.TAKE) { //if landed on a card
+                        Card c;
                         if ((currentPosition.getId() == 3) || (currentPosition.getId() == 18) || (currentPosition.getId() == 34)) { //potLuck
-                            Card c = potluck.drawCard();
-                            System.out.println(c.getText());
+                            c = potluck.drawCard(); 
+                        } else { //opportunity knocks
+                            c = opportunityKnocks.drawCard();  
+                        }
+                        System.out.println(c.getText());
                             switch (c.getType()) {
                                 case FREE: 
                                     playerList.get(i).setGetOut(true);
@@ -78,9 +83,23 @@ public class Game {
                                     //right now, we'll default to paying
                                     playerList.get(i).getPlayerCash().subtractCash(c.getAmount());
                                     break;
-                                  
-                            }
-                        }
+                                case MOVEBACK:
+                                    int space = c.getAmount();
+                                    playerList.get(i).movePosition(space);
+                                    break;
+                                case PAYPER:
+                                    int hotelCount = 0;
+                                    int houseCount = 0;
+                                    int hotelAmount = c.getHotel();
+                                    int houseAmount = c.getHouse();
+                                    for (Property p: playerList.get(i).getProperties()) {
+                                        houseCount += p.getHouseCount();
+                                        hotelCount += p.getHotelCount();
+                                    }
+                                    int totalpay = (hotelCount * hotelAmount)+(houseCount * houseAmount);
+                                    playerList.get(i).getPlayerCash().subtractCash(totalpay);
+                                    break;
+                    }
                     }
                    
                    //Checks the board position and pays rent if owned by another player

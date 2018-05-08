@@ -8,11 +8,14 @@
  *
  * @author amylazarte
  */
-public enum PotLuckType {
+public enum CardType {
     COLLECT,
     PAY,
     MOVE,
     COLLECTFROM,
     FREE,
+    PAYPER,
+    MOVEBACK,
     PAY_DRAW;
+    
 }
