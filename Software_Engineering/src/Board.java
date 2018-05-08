@@ -1,5 +1,3 @@
-
-
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Collections;
@@ -65,11 +63,10 @@ public class Board {
                     gameBoard.add(p);
                     break;
             } 
-        }
-        
+        }        
     }
-    public List<Property> getBoard()
-    {
-        return gameBoard;
+    public List<Property> getBoard() {
+        return this.gameBoard;
     }
+    
 }

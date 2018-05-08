@@ -20,7 +20,6 @@ public class Player {
     
     public Player()
     {
-        this.tempPiecePicker = 0;
         this.jailStatus = new Jailed();
         this.cash = new Cash(1500);
         this.properties = new ArrayList<Property>();
@@ -28,9 +27,9 @@ public class Player {
     
     //Method assigns static pieces currently, with the intent to later allow
     //Each user to select which piece they want to use.
-    public void setBoardPiece()
+    public void setBoardPiece(int i)
     {
-        switch(tempPiecePicker)
+        switch(i)
         {
             case 0: this.piece = boardPiece.BOOT;
                     break;

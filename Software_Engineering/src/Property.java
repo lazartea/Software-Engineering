@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 /*
 * This class represents a single property's data. There are separate constructors for different types of properties
 */
@@ -131,6 +134,5 @@ public class Property {
     
     public int getId(){
         return this.id;
-    }
-    
+    }        
 }
