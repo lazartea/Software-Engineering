@@ -34,7 +34,6 @@ public class Property_Data {
                   Cell c = r.getCell(cn);
                   
                   if (c != null) {
-                       
                     if (c.getCellTypeEnum() == CellType.STRING) {
                         excelRow.add(c.getStringCellValue());
                     } else {
