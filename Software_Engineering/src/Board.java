@@ -9,13 +9,14 @@ import java.util.Collections;
  */
 public class Board {
     public List<Property> gameBoard;
+    public Cash freeParking;
     
     //This constructor iterates through the generated property data to form a linked list of board spaces/properties
     // properties are differentiated by type (Utility, property, action, etc)
     Board() {
         this.gameBoard = Collections.synchronizedList(new LinkedList<Property>());
         Property_Data data = new Property_Data();
-        
+        this.freeParking = new Cash(0);
         
         List propertySpace;
         for (List item : data.Excel) {
@@ -69,4 +70,19 @@ public class Board {
     public List<Property> getBoard() {
         return this.gameBoard;
     }   
+    
+    public Cash getFreeParking() {
+        return this.freeParking;
+    }
+    
+    public String printProperties() {
+        String finalString = "";
+        for (Property p: gameBoard) {
+            if (p.getGroup() != null) {
+                finalString += p.printData();
+                finalString += "\n";
+            }
+        }
+        return finalString;
+    }
 }
