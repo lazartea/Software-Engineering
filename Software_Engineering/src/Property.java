@@ -23,7 +23,7 @@ public class Property {
     private String space;
     
     private propertyAction action;
-    private propertyGroup group;
+    private propertyGroup group = null;
     
     private Player buyHouse;
 
@@ -145,7 +145,21 @@ public class Property {
         return this.action;
     }
     
+    public propertyGroup getGroup() {
+        return this.group;
+    }
+    
     public Player owner() {
         return buyHouse;
+    }
+    
+    public String printData() {
+        String returnString;
+        if (this.isOwned) {
+            returnString = this.group + " #" + this.id + ": owned by Player " + owner().getID()+", " + getHouseCount() + " Houses, " + getHotelCount() + " Hotels \n";
+        } else {
+            returnString = this.group + " #" + this.id + ": unowned";
+        }
+        return returnString;
     }
 }

@@ -201,15 +201,7 @@ class CommandLineInterface implements UserInterface {
         return gameType == 1;
     }
     
-    /*
-    * Takes in user input for each turn
-    * stub code at the moment
-    */
-    @Override
-    public void getTurn() {
-        
-    }
-    
+
     /*
     * Sets the piece used for each player based on user input
     * @return int representing a piece
@@ -223,12 +215,55 @@ class CommandLineInterface implements UserInterface {
                 System.out.println("Player "+i+" choose your piece. 1-Boot, 2-Smartphone, 3-Goblet, 4-Hatstand, 5-Cat, 6-Spoon.");
                 Scanner sc = new Scanner(System.in);
                 pieceType = sc.nextInt(); //we need to add something so that we only allow each piece to be assigned once
+                if (pieceType > 6) {
+                    break; 
+                } else {
+                    System.out.println("Type 1-6");
+                }
                 break;
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Type 1 for full or 2 for abridged.");
+                System.out.println("Type 1-6");
             }
         }
         return pieceType;
+    }
+    
+    @Override 
+    public int getTurnOption() {
+        System.out.println("1:End Turn  2:Buy property 3:Display Property Data"); //More to be added
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                int option = scanner.nextInt();
+                if (option <= 4) {
+                    return option;
+                } else {
+                    System.out.println("Type 1-3");
+                }
+                
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Type 1-3");
+            }  
+    }
+    }
+    
+    @Override
+    public int getPayDraw() {
+        System.out.println("1: Draw Card 2:Pay Fine");
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                int option = scanner.nextInt();
+                if (option < 3) {
+                    return option;
+                } else {
+                    System.out.println("Type 1 or 2");
+                }
+                
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Type 1 or 2");
+            }  
+    }
     }
     
 }

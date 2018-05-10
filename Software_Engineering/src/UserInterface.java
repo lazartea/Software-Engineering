@@ -28,15 +28,21 @@ public interface UserInterface {
     public boolean getFull();
     
     /*
-    * Takes in user input for each turn
-    * stub code at the moment
-    */
-    public void getTurn();
-    
-    /*
     * Sets the piece used for each player based on user input
     * @return int representing a piece
     */
     public int getPiece(int i);
+    
+    /**
+     * Gets the selected option for each player's turn
+     * @return 
+     */
+    public int getTurnOption();
+    
+    /**
+     * Gets the user's choice when selected a Pay/Draw card 
+     * @return 
+     */
+    public int getPayDraw();
     
 }
