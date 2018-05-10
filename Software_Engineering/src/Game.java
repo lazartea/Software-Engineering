@@ -37,14 +37,21 @@ public class Game {
         do
             for(int i  = 0; i < playerCount; i++)
             {
-                System.out.println("Player " + (i+1) + "'s turn.");
+                System.out.println("\n\nPlayer " + (i+1) + "'s turn.");
                 System.out.println("Money available: " + playerList.get(i).getPlayerCash().getCash());
                 boolean turn = true;
+                boolean reroll = true;
                 while(turn)
                 {
-                   bl.movePlayer(playerList.get(i));
-                   cl.displayLocation(playerList.get(i).boardPosition());
-                   Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
+
+                    Die die = bl.movePlayer(playerList.get(i));
+                    System.out.println("You have rolled:" + die.returnRoll());
+                    if(die.isDouble())
+                    {
+                        System.out.println("Double Roll!");
+                    }
+                    cl.displayLocation(playerList.get(i).boardPosition());                 
+                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
                     if (currentPosition.getAction() == propertyAction.TAKE) { //if landed on a card
                         Card c;
                         if ((currentPosition.getId() == 3) || (currentPosition.getId() == 18) || (currentPosition.getId() == 34)) { //potLuck
@@ -101,24 +108,25 @@ public class Game {
                                     int totalpay = (hotelCount * hotelAmount)+(houseCount * houseAmount);
                                     playerList.get(i).getPlayerCash().subtractCash(totalpay);
                                     break;
+                        }
                     }
-                    }
+                
                    
-                   //Checks the board position and pays rent if owned by another player
-                   if(board.getBoard().get(playerList.get(i).boardPosition()).isOwned()
+                    //Checks the board position and pays rent if owned by another player
+                    if(board.getBoard().get(playerList.get(i).boardPosition()).isOwned()
                            && board.getBoard().get(playerList.get(i).boardPosition()).owner() != playerList.get(i))
-                   {
+                    {
 
-                       int payable = board.getBoard().get(playerList.get(i).boardPosition()).getRent();
-                       playerList.get(i).getPlayerCash().subtractCash(payable);
-                       board.getBoard().get(playerList.get(i).boardPosition()).owner().getPlayerCash().addCash(payable);
-                       System.out.println("This property is already owned, you need to pay £" + payable + " to player " 
+                        int payable = board.getBoard().get(playerList.get(i).boardPosition()).getRent();
+                        playerList.get(i).getPlayerCash().subtractCash(payable);
+                        board.getBoard().get(playerList.get(i).boardPosition()).owner().getPlayerCash().addCash(payable);
+                        System.out.println("This property is already owned, you need to pay £" + payable + " to player " 
                                + board.getBoard().get(playerList.get(i).boardPosition()).owner().getID());
-                   }
-                   int option = 0;
-                   while(option != 1)
-                   {                      
-                        System.out.println("1:End Turn  2:Buy property"); //More to be added
+                    }
+                    int option = 0;
+                    while(option != 1)
+                    {                      
+                        System.out.println("1:End Turn  2:Buy property  3:Roll Again"); //More to be added
                         Scanner scanner = new Scanner(System.in);
                         option = scanner.nextInt();                  
                         switch(option)
@@ -135,9 +143,35 @@ public class Game {
                                 {
                                     System.out.println("You need to complete your first cycle around the board before buying a property!");
                                 }
+                            case 3:
+                                {
+                                   if(die.isDouble())
+                                   {
+                                       option = 1;
+                                   }
+                                   else
+                                   {
+                                       System.out.println("You can only roll again if you have doubles");
+                                   }
+                                }
                         }
-                   }
-                }            
+                    }
+                    if(die.isDouble())
+                    {
+                        int j = 0;                      
+                        if(j >= 3)
+                        {
+                            System.out.println("3 Doubles in a row, Go to jail!");
+                            bl.goToJail(playerList.get(i));
+                            turn = false;
+                        }
+                        else
+                        {    
+                            turn  = true;
+                        }                      
+                    }
+                }
+                System.out.println("\nEnding Turn!\n");
             }
         while(continueGame);
     }

@@ -212,7 +212,7 @@ class CommandLineInterface implements UserInterface {
         
         while (true) {
             try {
-                System.out.println("Player "+i+" choose your piece. 1-Boot, 2-Smartphone, 3-Goblet, 4-Hatstand, 5-Cat, 6-Spoon.");
+                System.out.println("Player "+(i+1)+" choose your piece. 1-Boot, 2-Smartphone, 3-Goblet, 4-Hatstand, 5-Cat, 6-Spoon.");
                 Scanner sc = new Scanner(System.in);
                 pieceType = sc.nextInt(); //we need to add something so that we only allow each piece to be assigned once
                 if (pieceType > 6) {

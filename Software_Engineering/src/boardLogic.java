@@ -17,38 +17,27 @@ public class boardLogic {
     }
     
     //Creates a dice roll and moves the player.
-    public void movePlayer(Player player)
+    public Die movePlayer(Player player)
     {
         int i = 0;
         Die die = new Die();
-        do{                     
-            for(int j = 1; j <= die.getRoll(); j++)
+        die.getRoll();
+        for(int j = 1; j <= die.returnRoll(); j++)
+        {
+
+            if(player.boardPosition() == board.getBoard().size() - 1)
             {
-                if(die.isDouble())
-                {
-                    i++;
-                }
-                //Wraps position and pass go
-                if(player.boardPosition() == board.getBoard().size())
-                {
-                    player.wrapPosition();
-                    player.passGo();
-                }
-                if(i < 3)
-                {                   
-                    player.movePosition(1);
-                }
-                //Set jailed if 3 doubles are rolled
-                else
-                {
-                    player.setJailed();
-                    break;
-                }               
+                player.wrapPosition();
+                player.passGo();
             }
-            //Needs option to ask player if they would like to buy house
-        }while(i < 3 && die.isDouble());             
+            else
+            {
+                player.movePosition(1);
+            }
+        }
+        return die;
     }
-    
+                
     public void goToJail(Player player)
     {
         //Set player position to jail square without completing a cycle
@@ -88,6 +77,7 @@ public class boardLogic {
             player.getPlayerCash().subtractCash(property.getCost());
             return true;
         }      
-    }                
+    }
+
 }
 
