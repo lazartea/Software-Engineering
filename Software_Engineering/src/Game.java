@@ -201,11 +201,6 @@ public class Game {
                         }                      
                     }
                 }
-                System.out.println("\nEnding Turn!\n");
-                        
-                    
-                
-            
         } while (continueGame);
     }
     /*

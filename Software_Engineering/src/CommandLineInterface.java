@@ -212,7 +212,7 @@ class CommandLineInterface implements UserInterface {
         
         while (true) {
             try {
-                System.out.println("Player "+i+" choose your piece. 1-Boot, 2-Smartphone, 3-Goblet, 4-Hatstand, 5-Cat, 6-Spoon.");
+                System.out.println("Player "+(i+1)+" choose your piece. 1-Boot, 2-Smartphone, 3-Goblet, 4-Hatstand, 5-Cat, 6-Spoon.");
                 Scanner sc = new Scanner(System.in);
                 pieceType = sc.nextInt(); //we need to add something so that we only allow each piece to be assigned once
                 if (pieceType > 6) {
@@ -230,19 +230,19 @@ class CommandLineInterface implements UserInterface {
     
     @Override 
     public int getTurnOption() {
-        System.out.println("1:End Turn  2:Buy property 3:Display Property Data"); //More to be added
+        System.out.println("1:End Turn  2:Buy property 3:Display Property Data 4:Roll Again"); //More to be added
         while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
                 int option = scanner.nextInt();
-                if (option <= 4) {
+                if (option <= 5) {
                     return option;
                 } else {
-                    System.out.println("Type 1-3");
+                    System.out.println("Type 1-4");
                 }
                 
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Type 1-3");
+                System.out.println("Type 1-4");
             }  
     }
     }

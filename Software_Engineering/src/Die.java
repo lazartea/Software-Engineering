@@ -28,6 +28,11 @@ public class Die {
         return firstRoll + secondRoll;
     }
     
+    public int returnRoll()
+    {
+        return firstRoll + secondRoll;
+    }
+    
     public boolean isDouble()
     {
         return isDouble;
