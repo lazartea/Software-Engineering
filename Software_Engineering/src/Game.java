@@ -91,6 +91,7 @@ public class Game {
                                         if (c.getPosition() == 31) {
                                             playerList.get(i).setJailed();
                                         }
+                                        cl.displayLocation(playerList.get(i).boardPosition()+1);
                                         break;
                                     case PAY_DRAW:
                                         int payDraw = cl.getPayDraw();
@@ -106,6 +107,7 @@ public class Game {
                                     case MOVEBACK:
                                         int space = c.getAmount();
                                         playerList.get(i).movePosition(space);
+                                        cl.displayLocation(playerList.get(i).boardPosition()+1);
                                         break;
                                     case PAYPER:
                                         int hotelCount = 0;
@@ -171,7 +173,7 @@ public class Game {
                             case 3: 
                                 System.out.println(board.printProperties());
                                 break;
-                            case 3:
+                            case 4:
                                 {
                                    if(die.isDouble())
                                    {
