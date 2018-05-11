@@ -115,6 +115,10 @@ public class Player {
         return this.id;
     }
     
+    public void setId(int i) {
+        this.id = i;
+    }
+    
     public ArrayList<Property> getProperties() {
         return this.properties;
     }

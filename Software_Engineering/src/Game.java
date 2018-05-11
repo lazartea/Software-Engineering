@@ -29,6 +29,7 @@ public class Game {
 
         for (int i = 0; i < playerCount; i++) {
             Player p = new Player();
+            p.setId(i+1);
             p.setGameAgent(false);
             playerList.add(p);
             p.setBoardPiece(cl.getPiece(i));
@@ -37,6 +38,7 @@ public class Game {
         if (gameAgent) {
             Player p = new Player();
             p.setGameAgent(true);
+            p.setId(playerCount+1);
             playerList.add(p);
             playerCount++;
         }

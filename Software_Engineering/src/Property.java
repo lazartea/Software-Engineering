@@ -156,7 +156,11 @@ public class Property {
     public String printData() {
         String returnString;
         if (this.isOwned) {
-            returnString = this.group + " #" + this.id + ": owned by Player " + owner().getID()+", " + getHouseCount() + " Houses, " + getHotelCount() + " Hotels \n";
+            if (owner().getGameAgent()) {
+                returnString = this.group + " #" + this.id + ": owned by Game Agent, " + getHouseCount() + " Houses, " + getHotelCount() + " Hotels \n";
+            } else {
+                returnString = this.group + " #" + this.id + ": owned by Player " + owner().getID()+", " + getHouseCount() + " Houses, " + getHotelCount() + " Hotels \n";
+            }
         } else {
             returnString = this.group + " #" + this.id + ": unowned";
         }
