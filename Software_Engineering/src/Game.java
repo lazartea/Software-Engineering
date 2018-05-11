@@ -21,7 +21,6 @@ public class Game {
         List<Property> gameBoard = b.getBoard();
         Pot_Luck potluck = new Pot_Luck();
         OpportunityKnocks opportunityKnocks = new OpportunityKnocks();
-
         CommandLineInterface cl = new CommandLineInterface();
         ArrayList<Player> playerList = new ArrayList<Player>();
         boardLogic bl = new boardLogic(playerCount);
@@ -53,11 +52,11 @@ public class Game {
                     System.out.println("\n\nPlayer " + (i+1) + "'s turn.");
                 }
                 System.out.println("Money available: " + playerList.get(i).getPlayerCash().getCash());
+                System.out.println(playerList.get(i).boardPosition());
                 boolean turn = true;
                 boolean reroll = true;
                 while(turn)
                 {
-
                     Die die = bl.movePlayer(playerList.get(i));
                     System.out.println("You have rolled:" + die.returnRoll());
                     if(die.isDouble())
@@ -66,7 +65,7 @@ public class Game {
                     }
                     cl.displayLocation(playerList.get(i).boardPosition()+1); //properties start at 1, board position starts at 0
                     System.out.println("\n");
-                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
+                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition()+1);
                     if (currentPosition.getAction() != null) {
                         switch (currentPosition.getAction()) {
                             case TAKE:
@@ -192,7 +191,7 @@ public class Game {
                                 break;
                             case 2:
                                 if (playerList.get(i).doneCycle()) {
-                                    bl.buyHouse(playerList.get(i), board.getBoard().get(playerList.get(i).boardPosition()));
+                                    bl.buyHouse(playerList.get(i), board.getBoard().get(playerList.get(i).boardPosition()+1));
                                 } else {
                                     System.out.println("You need to complete your first cycle around the board before buying a property!");
                                 }
@@ -213,8 +212,8 @@ public class Game {
                                 }
                         }
                     }
-                    if(board.getBoard().get(playerList.get(i).boardPosition()).isOwned() == false && playerList.get(i).doneCycle() &&
-                            playerList.size() > 2 && board.getBoard().get(playerList.get(i).boardPosition()).getRent() > 0)
+                    if(board.getBoard().get(playerList.get(i).boardPosition()+1).isOwned() == false && playerList.get(i).doneCycle() &&
+                            playerList.size() > 2 && board.getBoard().get(playerList.get(i).boardPosition()+1).getRent() > 0)
                     {
                         ArrayList<Player> bidList = new ArrayList<Player>();
                         int bid = 0;
@@ -242,7 +241,7 @@ public class Game {
                                 {
                                     System.out.println("Bid to low, passing to next player");
                                     bidList.remove(playerList.get(j));
-                                    board.getBoard().get(playerList.get(i).boardPosition()).setCost(bid);
+                                    board.getBoard().get(playerList.get(i).boardPosition()+1).setCost(bid);
                                 }
                                 else
                                 {
@@ -251,7 +250,7 @@ public class Game {
                                     {
                                         bidList.add(playerList.get(j));
                                     }
-                                    board.getBoard().get(playerList.get(i).boardPosition()).setCost(bid);
+                                    board.getBoard().get(playerList.get(i).boardPosition()+1).setCost(bid);
                                     currentWinner = playerList.get(j);
                                 }
                                 temp = bid;
@@ -260,7 +259,7 @@ public class Game {
                         while(bidList.size() > 1);
                         if(bidList.size() > 0)
                         {
-                            bl.buyHouse(currentWinner, board.getBoard().get(playerList.get(i).boardPosition()));
+                            bl.buyHouse(currentWinner, board.getBoard().get(playerList.get(i).boardPosition()+1));
                         }
                         else
                         {

@@ -28,7 +28,7 @@ public class boardLogic {
         for(int j = 1; j <= die.returnRoll(); j++)
         {
 
-            if(player.boardPosition() == board.getBoard().size() - 1)
+            if(player.boardPosition()+1 == board.getBoard().size())
             {
                 player.wrapPosition();
                 player.passGo();
@@ -44,25 +44,27 @@ public class boardLogic {
     public void goToJail(Player player)
     {
         //Set player position to jail square without completing a cycle
-        if(player.boardPosition() < 31)
+        if(player.boardPosition()+1 < 31)
         {
-            while(player.boardPosition() < 31)
+            while(player.boardPosition()+1 < 31)
             {
                 player.movePosition(1);
             }
         }
         //decrement if player position is further than jailed
-        else if(player.boardPosition() > 31)
+        else if(player.boardPosition()+1 > 31)
         {
-            while(player.boardPosition() > 31)
+            while(player.boardPosition()+1 > 31)
             {
                 player.movePosition(-1);
             }
         }       
         player.setJailed();
     }
-    //Use the boolean return type when outputting, IE (if true  :  "House obtained"
-    //if false : "Cannot buy house".
+    /*
+        Use the boolean return type when outputting, IE (if true  :  "House obtained"
+        if false : "Cannot buy house".
+    */
     public boolean buyHouse(Player player, Property property)
     {
         if(player.getPlayerCash().getCash() < property.getCost())
