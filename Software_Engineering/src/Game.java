@@ -52,7 +52,6 @@ public class Game {
                     System.out.println("\n\nPlayer " + (i+1) + "'s turn.");
                 }
                 System.out.println("Money available: " + playerList.get(i).getPlayerCash().getCash());
-                System.out.println(playerList.get(i).boardPosition());
                 boolean turn = true;
                 boolean reroll = true;
                 while(turn)
