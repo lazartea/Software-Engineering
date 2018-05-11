@@ -205,6 +205,7 @@ class CommandLineInterface implements UserInterface {
     /*
     * Sets the piece used for each player based on user input
     * @return int representing a piece
+    * @param i representing player ID 
     */
     @Override
     public int getPiece(int i) {
@@ -228,6 +229,10 @@ class CommandLineInterface implements UserInterface {
         return pieceType;
     }
     
+   /**
+    * Gets scanner for turn options
+    * @return representing the players choice
+    */
     @Override 
     public int getTurnOption() {
         System.out.println("1:End Turn  2:Buy property 3:Display Property Data 4:Roll Again 5:Quit Game"); //More to be added
@@ -247,6 +252,10 @@ class CommandLineInterface implements UserInterface {
         }
     }
     
+   /**
+    * Sets the piece used for each player based on user input
+    * @return option representing a a player option
+    */
     @Override
     public int getPayDraw() {
         System.out.println("1: Draw Card 2:Pay Fine");
