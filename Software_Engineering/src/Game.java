@@ -45,7 +45,7 @@ public class Game {
         
         do
             for(int i  = 0; i < playerCount; i++)
-            {
+            {if (playerList.get(i).getIsPlaying()) { //bankrupted players don't play
                 if (playerList.get(i).getGameAgent()) {
                      System.out.println("\n\nGame Agent's turn");
                 } else {
@@ -162,14 +162,33 @@ public class Game {
                     //Checks the board position and pays rent if owned by another player
                     if (board.getBoard().get(playerList.get(i).boardPosition()+1).isOwned()
                             && board.getBoard().get(playerList.get(i).boardPosition()+1).owner() != playerList.get(i)) {
-
-
                         int payable = board.getBoard().get(playerList.get(i).boardPosition()+1).getRent();
-                        playerList.get(i).getPlayerCash().subtractCash(payable);
-                        board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getPlayerCash().addCash(payable);
-
+                        int amountPaid = 0;
                         System.out.println("This property is already owned, you need to pay £" + payable + " to player "
                                 + board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getID());
+                        
+                        if (playerList.get(i).getPlayerCash().getCash() > payable) {
+                            playerList.get(i).getPlayerCash().subtractCash(payable);
+                            amountPaid = payable;
+                        } else {
+                            while (playerList.get(i).getPlayerCash().getCash() < payable) {
+                                if (playerList.get(i).getProperties().size() > 1) {
+                                    Property p = playerList.get(i).getProperties().get(0);
+                                    playerList.get(i).removeProperty(p);
+                                    playerList.get(i).getPlayerCash().addCash(p.getCost());
+                                    amountPaid+=p.getCost();
+                                    System.out.println("Selling " + p.getGroup()+" #" + p.getId() + "to pay rent.");
+                                } else {
+                                    System.out.println("You have been bankrupted! You lose!");
+                                    playerList.get(i).lostGame();
+                                    turn = false;
+                                }
+                            }
+                        }
+                        System.out.println("Player "+ board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getID()+ "receives £" + amountPaid);
+                        board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getPlayerCash().addCash(amountPaid);
+
+                        
                     }
                     if (playerList.get(i).getGameAgent()) {
                         if ((board.getBoard().get(playerList.get(i).boardPosition()+1).getGroup() != null) && (playerList.get(i).doneCycle())) {
@@ -210,6 +229,9 @@ public class Game {
                                        System.out.println("You can only roll again if you have doubles");
                                    }
                                 }
+                            case 5: playerList.get(i).lostGame();
+                                    turn = false;
+                                    System.out.println("You have quit the game.");
                         }
                     }
                     if(die.isDouble())
@@ -226,7 +248,25 @@ public class Game {
                             turn  = true;
                         }                      
                     }
+                    int lostPlayers = 0;
+                    
+                    for (Player p: playerList) {
+                        if (!p.getIsPlaying()) {
+                          lostPlayers++;  
+                        }
+                    }
+                    if (lostPlayers == playerList.size()-1) {
+                        continueGame = false;
+                        for (Player p: playerList) { 
+                            if (p.getIsPlaying()) {
+                                Player winner = p;
+                                System.out.println("All players have bankrupted! The winner is player " + winner.getID());
+                            }   
+                        }
+                        
+                    }
                 }
+            }
         } while (continueGame);
     }
     /*

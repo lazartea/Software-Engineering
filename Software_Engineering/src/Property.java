@@ -93,6 +93,10 @@ public class Property {
         return hasHotel;
     }
     
+    public void setOwned(boolean b) {
+        this.isOwned = b;
+    }
+   
     public int getCost()
     {
         return cost;
@@ -152,6 +156,7 @@ public class Property {
     public Player owner() {
         return buyHouse;
     }
+    
     
     public String printData() {
         String returnString;

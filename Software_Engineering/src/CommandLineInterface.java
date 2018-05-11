@@ -230,19 +230,19 @@ class CommandLineInterface implements UserInterface {
     
     @Override 
     public int getTurnOption() {
-        System.out.println("1:End Turn  2:Buy property 3:Display Property Data 4:Roll Again"); //More to be added
+        System.out.println("1:End Turn  2:Buy property 3:Display Property Data 4:Roll Again 5:Quit Game"); //More to be added
         while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
                 int option = scanner.nextInt();
-                if (option <= 5) {
+                if (option <= 6) {
                     return option;
                 } else {
-                    System.out.println("Type 1-4");
+                    System.out.println("Type 1-5");
                 }
                 
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Type 1-4");
+                System.out.println("Type 1-5");
             }  
     }
     }
