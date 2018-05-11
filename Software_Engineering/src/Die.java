@@ -13,8 +13,10 @@ public class Die {
         this.firstRoll = 0;
         this.secondRoll  = 0;
     }
-    //Create 2 random numbers to simulate 2 dice rolls and check whether they
-    //are Doubles. (Can be changed to return a list of 2 ints if both values are needed independently)
+   /**
+    * Creates dice roll and moves player
+    * @return representing the dice roll
+    */
     public int getRoll()
     {     
         Random firstDie = new Random();

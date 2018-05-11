@@ -167,7 +167,7 @@ public class Game {
                         int amountPaid = 0;
                         System.out.println("This property is already owned, you need to pay £" + payable + " to player "
                                 + board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getID());
-                        
+                        //Check player cash
                         if (playerList.get(i).getPlayerCash().getCash() > payable) {
                             playerList.get(i).getPlayerCash().subtractCash(payable);
                             amountPaid = payable;
@@ -202,6 +202,7 @@ public class Game {
                             System.out.println("Game Agent ends turn.");
                         }
                     }
+                    //Choose a turn option
                     while (turn) {
                         int option = cl.getTurnOption();
                         switch (option) {
@@ -235,6 +236,7 @@ public class Game {
                                     System.out.println("You have quit the game.");
                         }
                     }
+                    //Creates bidding process
                     if(board.getBoard().get(playerList.get(i).boardPosition()+1).isOwned() == false && playerList.get(i).doneCycle() &&
                             playerList.size() > 2 && board.getBoard().get(playerList.get(i).boardPosition()+1).getRent() > 0)
                     {
@@ -258,6 +260,7 @@ public class Game {
                                 System.out.println("\nPlayer " + (j+1) + " Please enter your bid, or 0 if you do not want to bid.");                                
                                 bid = cl.getBid();
                                 previousBid = temp;
+                                //Creates statements for bidding, ensuring the highest bid is kept only
                                 if(bid == 0)
                                 {
                                     System.out.println("Passing to next player");
@@ -283,6 +286,7 @@ public class Game {
                             }
                         }
                         while(bidList.size() > 1);
+                        //if bidlist is size 1, that player buys the pieces, otherwise no one bidded
                         if(bidList.size() > 0)
                         {
                             bl.buyHouse(currentWinner, board.getBoard().get(playerList.get(i).boardPosition()+1));
@@ -292,6 +296,7 @@ public class Game {
                             System.out.println("No one wants the house, passing!");
                         }
                     }
+                    //Checking for doubles, replay turn if double unless for the third time, then go to jail
                     if(die.isDouble())
                     {
                         int j = 0;                      

@@ -19,7 +19,11 @@ public class boardLogic {
         this.playerCount = playerCount;
     }
     
-    //Creates a dice roll and moves the player.
+    /**
+     * Rolls dice, then moves player
+     * @param player represents player moving
+     * @return dice used to roll
+     */
     public Die movePlayer(Player player)
     {
         int i = 0;
@@ -28,7 +32,7 @@ public class boardLogic {
         for(int j = 1; j <= die.returnRoll(); j++)
         {
 
-            if(player.boardPosition()+1 == board.getBoard().size())
+            if(player.boardPosition() == board.getBoard().size()-1)
             {
                 player.wrapPosition();
                 player.passGo();
@@ -40,7 +44,9 @@ public class boardLogic {
         }
         return die;
     }
-                
+    /**
+     * @param player represents player going to jail
+     */            
     public void goToJail(Player player)
     {
         //Set player position to jail square without completing a cycle
@@ -61,10 +67,11 @@ public class boardLogic {
         }       
         player.setJailed();
     }
-    /*
-        Use the boolean return type when outputting, IE (if true  :  "House obtained"
-        if false : "Cannot buy house".
-    */
+    /**
+     * @param player player buying the house
+     * @param property represents a house being bought
+     * @return 
+     */
     public boolean buyHouse(Player player, Property property)
     {
         if(player.getPlayerCash().getCash() < property.getCost())

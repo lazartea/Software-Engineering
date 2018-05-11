@@ -81,15 +81,24 @@ public class Player {
     {
         this.boardPosition += a;
     }
+    /**
+     * wraps position of board back to the starting position
+     */
     public void wrapPosition()
     {
         this.boardPosition = 0;
-    }   
+    } 
+    /**
+     * Player passes go and collects money, if first turn they can now buy properties
+     */
     public void passGo()
     {
         this.cash.addCash(200);
         firstCycle = true;     
-    }   
+    }
+    /**
+     * @return returns whether they have completed a cycle of the board
+     */
     public boolean doneCycle()
     {
         return firstCycle;
@@ -113,7 +122,10 @@ public class Player {
     public boolean getGetOut() {
         return this.getOutJail;
     }
-    
+    /**
+     * 
+     * @return returns player ID
+     */
     public int getID() {
         return this.id;
     }
@@ -125,7 +137,9 @@ public class Player {
     public ArrayList<Property> getProperties() {
         return this.properties;
     }
-    
+    /**
+     * @param b true or false whether the 'player' is a real player or game agent 
+     */
     public void setGameAgent(boolean b) {
         this.gameAgent = b;
     }
