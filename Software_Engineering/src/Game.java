@@ -64,7 +64,7 @@ public class Game {
                     }
                     cl.displayLocation(playerList.get(i).boardPosition()+1); //properties start at 1, board position starts at 0
                     System.out.println("\n");
-                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition()+1);
+                    Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
                     if (currentPosition.getAction() != null) {
                         switch (currentPosition.getAction()) {
                             case TAKE:
