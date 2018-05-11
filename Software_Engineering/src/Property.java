@@ -98,6 +98,11 @@ public class Property {
         return cost;
     }
     
+    public void setCost(int cost)
+    {
+        this.cost = cost;
+    }
+    
     public int getRent()
     {//this will only work for houses; the ultilites/stations will need special logic
         int rent = rentDue;
