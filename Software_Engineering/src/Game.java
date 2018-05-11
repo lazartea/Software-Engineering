@@ -250,6 +250,9 @@ public class Game {
                             {
                                 //do nothing if current player
                             }
+                            else if (playerList.get(j).getGameAgent()) {
+                                //do nothing if game agent
+                            }
                             else
                             {
                                 System.out.println("\nPlayer " + (j+1) + " Please enter your bid, or 0 if you do not want to bid.");                                
