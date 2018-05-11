@@ -99,9 +99,10 @@ public class Game {
                                         board.getFreeParking().addCash(c.getAmount());
                                         break;
                                     case MOVE:
-                                        playerList.get(i).setBoardPosition(c.getPosition()-1);
                                         if (c.getPosition() == 31) {
-                                            playerList.get(i).setJailed();
+                                            bl.goToJail(playerList.get(i));
+                                        } else {
+                                            playerList.get(i).setBoardPosition(c.getPosition()-1);
                                         }
                                         cl.displayLocation(playerList.get(i).boardPosition()+1);
                                         break;
@@ -341,7 +342,6 @@ public class Game {
 
         gameType = cl.getFull();
 
-        //call game creation method?
         Game g = new Game(playerCount, gameAgent, gameType);
 
     }
