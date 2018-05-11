@@ -45,4 +45,9 @@ public interface UserInterface {
      */
     public int getPayDraw();
     
+    /**
+     * Gets the user's bid during an action
+     * @return int
+     */
+    public int getBid();
 }
