@@ -230,9 +230,11 @@ public class Game {
                                        System.out.println("You can only roll again if you have doubles");
                                    }
                                 }
+                                break;
                             case 5: playerList.get(i).lostGame();
                                     turn = false;
                                     System.out.println("You have quit the game.");
+                                    break;
                         }
                     }
                     //Creates bidding process
