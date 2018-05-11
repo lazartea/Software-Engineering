@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
     private int id;
+    private boolean gameAgent;
     private boolean getOutJail;
     private Cash cash;
     private int tempPiecePicker;
@@ -116,5 +117,13 @@ public class Player {
     
     public ArrayList<Property> getProperties() {
         return this.properties;
+    }
+    
+    public void setGameAgent(boolean b) {
+        this.gameAgent = b;
+    }
+    
+    public boolean getGameAgent(){
+        return this.gameAgent;
     }
 }

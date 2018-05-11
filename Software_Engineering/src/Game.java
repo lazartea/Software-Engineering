@@ -29,17 +29,26 @@ public class Game {
 
         for (int i = 0; i < playerCount; i++) {
             Player p = new Player();
+            p.setGameAgent(false);
             playerList.add(p);
             p.setBoardPiece(cl.getPiece(i));
         }
 
         if (gameAgent) {
-                   
+            Player p = new Player();
+            p.setGameAgent(true);
+            playerList.add(p);
+            playerCount++;
         }
+        
         do
             for(int i  = 0; i < playerCount; i++)
             {
-                System.out.println("\n\nPlayer " + (i+1) + "'s turn.");
+                if (playerList.get(i).getGameAgent()) {
+                     System.out.println("\n\nGame Agent's turn");
+                } else {
+                    System.out.println("\n\nPlayer " + (i+1) + "'s turn.");
+                }
                 System.out.println("Money available: " + playerList.get(i).getPlayerCash().getCash());
                 boolean turn = true;
                 boolean reroll = true;
@@ -53,6 +62,7 @@ public class Game {
                         System.out.println("Double Roll!");
                     }
                     cl.displayLocation(playerList.get(i).boardPosition()+1); //properties start at 1, board position starts at 0
+                    System.out.println("\n");
                     Property currentPosition = board.getBoard().get(playerList.get(i).boardPosition());
                     if (currentPosition.getAction() != null) {
                         switch (currentPosition.getAction()) {
@@ -94,15 +104,19 @@ public class Game {
                                         cl.displayLocation(playerList.get(i).boardPosition()+1);
                                         break;
                                     case PAY_DRAW:
-                                        int payDraw = cl.getPayDraw();
-                                        if (payDraw == 1) {
-                                            c = opportunityKnocks.drawCard();
-                                            //this isn't working yet, since there's no way to recall the loop atm
-                                        } else {
+                                        if (playerList.get(i).getGameAgent()) {
                                             playerList.get(i).getPlayerCash().subtractCash(c.getAmount());
                                             board.getFreeParking().addCash(c.getAmount());
+                                        } else {
+                                            int payDraw = cl.getPayDraw();
+                                            if (payDraw == 1) {
+                                                c = opportunityKnocks.drawCard();
+                                                //this isn't working yet, since there's no way to recall the loop atm
+                                            } else {
+                                                playerList.get(i).getPlayerCash().subtractCash(c.getAmount());
+                                                board.getFreeParking().addCash(c.getAmount());
+                                            }
                                         }
-                                        
                                         break;
                                     case MOVEBACK:
                                         int space = c.getAmount();
@@ -144,18 +158,28 @@ public class Game {
                         }
                     }
                     //Checks the board position and pays rent if owned by another player
-                    if (board.getBoard().get(playerList.get(i).boardPosition()).isOwned()
-                            && board.getBoard().get(playerList.get(i).boardPosition()).owner() != playerList.get(i)) {
+                    if (board.getBoard().get(playerList.get(i).boardPosition()+1).isOwned()
+                            && board.getBoard().get(playerList.get(i).boardPosition()+1).owner() != playerList.get(i)) {
 
 
-                        int payable = board.getBoard().get(playerList.get(i).boardPosition()).getRent();
+                        int payable = board.getBoard().get(playerList.get(i).boardPosition()+1).getRent();
                         playerList.get(i).getPlayerCash().subtractCash(payable);
-                        board.getBoard().get(playerList.get(i).boardPosition()).owner().getPlayerCash().addCash(payable);
+                        board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getPlayerCash().addCash(payable);
 
                         System.out.println("This property is already owned, you need to pay £" + payable + " to player "
-                                + board.getBoard().get(playerList.get(i).boardPosition()).owner().getID());
+                                + board.getBoard().get(playerList.get(i).boardPosition()+1).owner().getID());
                     }
-
+                    if (playerList.get(i).getGameAgent()) {
+                        if ((board.getBoard().get(playerList.get(i).boardPosition()+1).getGroup() != null) && (playerList.get(i).doneCycle())) {
+                            bl.buyHouse(playerList.get(i), board.getBoard().get(playerList.get(i).boardPosition()+1));
+                            System.out.println("Game agent buys property.");
+                            System.out.println("Game Agent ends turn.");
+                            turn = false;
+                        } else {
+                            turn = false;
+                            System.out.println("Game Agent ends turn.");
+                        }
+                    }
                     while (turn) {
                         int option = cl.getTurnOption();
                         switch (option) {
