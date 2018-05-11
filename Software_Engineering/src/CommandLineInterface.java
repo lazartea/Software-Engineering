@@ -244,7 +244,7 @@ class CommandLineInterface implements UserInterface {
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Type 1-4");
             }  
-    }
+        }
     }
     
     @Override
@@ -263,7 +263,21 @@ class CommandLineInterface implements UserInterface {
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Type 1 or 2");
             }  
-    }
+        }
     }
     
+    @Override
+    public int getBid()
+    {
+        System.out.println("Enter bid:");
+        while(true){
+            try{
+                Scanner scanner = new Scanner(System.in);
+                int option = scanner.nextInt();
+                return option;
+            }catch(java.util.InputMismatchException e){
+                System.out.println("Enter a valid number");
+            }
+        }              
+    }    
 }

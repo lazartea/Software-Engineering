@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 /**
  *
  * @author Harry
@@ -78,6 +81,5 @@ public class boardLogic {
             return true;
         }      
     }
-
 }
 

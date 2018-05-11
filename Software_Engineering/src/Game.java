@@ -153,6 +153,7 @@ public class Game {
                         System.out.println("This property is already owned, you need to pay £" + payable + " to player "
                                 + board.getBoard().get(playerList.get(i).boardPosition()).owner().getID());
                     }
+                    
 
                     while (turn) {
                         int option = cl.getTurnOption();
@@ -171,7 +172,7 @@ public class Game {
                             case 3: 
                                 System.out.println(board.printProperties());
                                 break;
-                            case 3:
+                            case 4:
                                 {
                                    if(die.isDouble())
                                    {
@@ -182,6 +183,60 @@ public class Game {
                                        System.out.println("You can only roll again if you have doubles");
                                    }
                                 }
+                        }
+                    }
+                    if(board.getBoard().get(playerList.get(i).boardPosition()).isOwned() == false && playerList.get(i).doneCycle() &&
+                            playerList.size() > 2 && board.getBoard().get(playerList.get(i).boardPosition()).getRent() > 0)
+                    {
+                        ArrayList<Player> bidList = new ArrayList<Player>();
+                        int bid = 0;
+                        int temp = 0;
+                        int previousBid = 0;
+                        Player currentWinner = null;
+                        do
+                        for(int j = 0; j < playerList.size(); j++)
+                        {
+                            if(playerList.get(j).equals(playerList.get(i)))
+                            {
+                                //do nothing if current player
+                            }
+                            else
+                            {
+                                System.out.println("\nPlayer " + (j+1) + " Please enter your bid, or 0 if you do not want to bid.");                                
+                                bid = cl.getBid();
+                                previousBid = temp;
+                                if(bid == 0)
+                                {
+                                    System.out.println("Passing to next player");
+                                    bidList.remove(playerList.get(j));
+                                }
+                                else if(bid <= previousBid)
+                                {
+                                    System.out.println("Bid to low, passing to next player");
+                                    bidList.remove(playerList.get(j));
+                                    board.getBoard().get(playerList.get(i).boardPosition()).setCost(bid);
+                                }
+                                else
+                                {
+                                    System.out.println("New Highest Bid!");
+                                    if(bidList.contains(playerList.get(j)) == false)
+                                    {
+                                        bidList.add(playerList.get(j));
+                                    }
+                                    board.getBoard().get(playerList.get(i).boardPosition()).setCost(bid);
+                                    currentWinner = playerList.get(j);
+                                }
+                                temp = bid;
+                            }
+                        }
+                        while(bidList.size() > 1);
+                        if(bidList.size() > 0)
+                        {
+                            bl.buyHouse(currentWinner, board.getBoard().get(playerList.get(i).boardPosition()));
+                        }
+                        else
+                        {
+                            System.out.println("No one wants the house, passing!");
                         }
                     }
                     if(die.isDouble())
